@@ -7,10 +7,12 @@ dotenv.config();
 
 export const register = async (req, res) => {
 	try {
-		const { email, password } = req.body;
+		const { full_name, email, password } = req.body;
 
-		if (!email || !password) {
-			return res.status(400).json({ message: "Email and password required" });
+		if (!full_name || !email || !password) {
+			return res
+				.status(400)
+				.json({ message: "Full name, email and password required" });
 		}
 
 		const existingUser = await findUserByEmail(email);
@@ -19,7 +21,7 @@ export const register = async (req, res) => {
 		}
 
 		const hashedPassword = await bcrypt.hash(password, 10);
-		const result = await createUser(email, hashedPassword);
+		const result = await createUser(email, hashedPassword, full_name);
 
 		res.status(201).json({ message: "User created", userId: result.insertId });
 	} catch (err) {
@@ -47,11 +49,9 @@ export const login = async (req, res) => {
 		}
 
 		const token = jwt.sign(
-			{ id: user.id, email: user.email },
+			{ id: user.id, email: user.email, full_name: user.full_name },
 			process.env.JWT_SECRET,
-			{
-				expiresIn: "1h",
-			},
+			{ expiresIn: "1h" },
 		);
 
 		res.json({ token });

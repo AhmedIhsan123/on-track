@@ -2,7 +2,7 @@ import pool from "../config/database.js";
 
 export const createUser = async (email, hashedPassword) => {
 	const [result] = await pool.query(
-		"INSERT INTO users (email, password) VALUES (?, ?)",
+		"INSERT INTO users (email, password_hash) VALUES (?, ?)",
 		[email, hashedPassword],
 	);
 	return result;

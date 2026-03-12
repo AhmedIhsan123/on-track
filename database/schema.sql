@@ -6,6 +6,7 @@ USE on_track;
 -- =========================
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(255),
     email VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -29,7 +30,6 @@ CREATE TABLE applications (
     ) DEFAULT 'saved',
     location VARCHAR(255),
     salary_range VARCHAR(255),
-    notes TEXT,
     applied_date DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
@@ -43,7 +43,7 @@ CREATE TABLE resumes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     filename VARCHAR(255),
-    filepath TEXT,
+    file_url TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
@@ -75,6 +75,12 @@ CREATE TABLE interviews (
         'onsite',
         'other'
     ) DEFAULT 'other',
+    outcome ENUM(
+        'pending',
+        'passed',
+        'failed',
+        'ghosted'
+    ) DEFAULT 'pending',
     notes TEXT,
 
     FOREIGN KEY (application_id) REFERENCES applications(id) ON DELETE CASCADE
@@ -90,6 +96,7 @@ CREATE TABLE reminders (
     reminder_date DATETIME NOT NULL,
     message TEXT,
     completed BOOLEAN DEFAULT FALSE,
+    sent BOOLEAN DEFAULT FALSE,
 
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (application_id) REFERENCES applications(id) ON DELETE CASCADE

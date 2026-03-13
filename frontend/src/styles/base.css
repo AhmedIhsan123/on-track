@@ -1,0 +1,164 @@
+/* ============================================================
+   BASE.CSS — Global styles for on-track
+   Import this once at the app entry point (e.g. main.jsx)
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap");
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* ── CSS Variables ── */
+:root {
+	/* Colors */
+	--bg: #f5f4f0;
+	--surface: #ffffff;
+	--text-primary: #1a1a1a;
+	--text-secondary: #6b6b6b;
+	--text-muted: #a0a0a0;
+	--accent: #2563eb;
+	--accent-hover: #1d4ed8;
+	--accent-light: #eff6ff;
+	--border: #e4e4e0;
+	--border-focus: #2563eb;
+	--error: #dc2626;
+	--error-bg: #fef2f2;
+	--success: #16a34a;
+
+	/* Shadows */
+	--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+	--shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+	--shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
+
+	/* Misc */
+	--radius: 10px;
+	--transition: 0.2s ease;
+}
+
+/* ── Base HTML ── */
+html {
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	font-family: "DM Sans", sans-serif;
+	background: var(--bg);
+	color: var(--text-primary);
+	min-height: 100vh;
+	line-height: 1.5;
+}
+
+/* ── Typography ── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "DM Serif Display", serif;
+	line-height: 1.2;
+	letter-spacing: -0.3px;
+	color: var(--text-primary);
+}
+
+p {
+	color: var(--text-secondary);
+	line-height: 1.7;
+}
+
+a {
+	color: var(--accent);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* ── Shared Button Base ── */
+button {
+	font-family: "DM Sans", sans-serif;
+	cursor: pointer;
+}
+
+/* ── Shared Form Input Base ── */
+input,
+textarea,
+select {
+	font-family: "DM Sans", sans-serif;
+	font-size: 14px;
+	color: var(--text-primary);
+	background: var(--surface);
+	border: 1.5px solid var(--border);
+	border-radius: var(--radius);
+	outline: none;
+	transition:
+		border-color var(--transition),
+		box-shadow var(--transition);
+}
+
+input::placeholder,
+textarea::placeholder {
+	color: var(--text-muted);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	border-color: var(--border-focus);
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ── Shared Spinner ── */
+.spinner {
+	width: 16px;
+	height: 16px;
+	border: 2px solid rgba(255, 255, 255, 0.4);
+	border-top-color: white;
+	border-radius: 50%;
+	animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* ── Shared Divider ── */
+.divider {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 4px 0;
+}
+
+.divider-line {
+	flex: 1;
+	height: 1px;
+	background: var(--border);
+}
+
+.divider-text {
+	font-size: 12px;
+	color: var(--text-muted);
+	white-space: nowrap;
+}
+
+/* ── Utility ── */
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}

@@ -7,6 +7,10 @@ import "../styles/auth.css";
 
 const AUTH_MODES = { LOGIN: "login", REGISTER: "register" };
 
+/**
+ * Handles both login and registration in a single page.
+ * Switches between modes without a route change — all state resets via switchMode().
+ */
 export default function AuthPage() {
 	const navigate = useNavigate();
 	const [mode, setMode] = useState(AUTH_MODES.LOGIN);
@@ -25,6 +29,7 @@ export default function AuthPage() {
 
 	const handleChange = (e) => {
 		setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+		// Clear the error for this field as the user corrects it
 		setErrors((prev) => ({ ...prev, [e.target.name]: "" }));
 		setApiError("");
 	};
@@ -47,11 +52,13 @@ export default function AuthPage() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setApiError("");
+
 		const validationErrors = validate();
 		if (Object.keys(validationErrors).length > 0) {
 			setErrors(validationErrors);
 			return;
 		}
+
 		setLoading(true);
 		try {
 			if (isLogin) {
@@ -60,6 +67,7 @@ export default function AuthPage() {
 				navigate("/users");
 			} else {
 				await registerUser(form.name, form.email, form.password);
+				// On success, drop back to login so the user can sign in
 				switchMode();
 				setApiError("");
 			}
@@ -70,6 +78,7 @@ export default function AuthPage() {
 		}
 	};
 
+	// Flips mode and wipes all form state so the user gets a clean slate
 	const switchMode = () => {
 		setMode(isLogin ? AUTH_MODES.REGISTER : AUTH_MODES.LOGIN);
 		setForm({ name: "", email: "", password: "", confirm: "" });
@@ -141,7 +150,6 @@ export default function AuthPage() {
 			{/* RIGHT FORM PANEL */}
 			<div className="auth-form-section">
 				<div className="auth-card">
-					{/* Nav row: back link + theme toggle */}
 					<div className="auth-nav-row">
 						<button className="auth-back-link" onClick={() => navigate("/")}>
 							<svg
@@ -173,6 +181,7 @@ export default function AuthPage() {
 						</p>
 					</div>
 
+					{/* Only call switchMode when clicking the inactive tab to avoid a redundant reset */}
 					<div className="mode-toggle">
 						<button
 							className={`toggle-btn ${isLogin ? "active" : ""}`}
@@ -194,6 +203,11 @@ export default function AuthPage() {
 
 					{apiError && <div className="api-error-banner">⚠ {apiError}</div>}
 
+					{/*
+					 * key={mode} remounts the form on mode switch, which clears any
+					 * browser-autofilled values that wouldn't be caught by resetting state alone.
+					 * noValidate disables native browser validation in favour of our own.
+					 */}
 					<form
 						className="form form-appear"
 						key={mode}
@@ -307,6 +321,7 @@ export default function AuthPage() {
 							</div>
 						)}
 
+						{/* TODO: implement forgot password flow */}
 						{isLogin && (
 							<div className="forgot-row">
 								<a href="#" className="forgot-link">
@@ -334,6 +349,7 @@ export default function AuthPage() {
 							<div className="divider-line" />
 						</div>
 
+						{/* TODO: wire up to a Google OAuth provider */}
 						<button type="button" className="oauth-btn">
 							<svg width="18" height="18" viewBox="0 0 24 24">
 								<path

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { loginUser, registerUser } from "../services/authService.js";
+import { useNavigate } from "react-router-dom";
 import "../styles/base.css";
 import "../styles/auth.css";
 
@@ -7,6 +8,7 @@ const AUTH_MODES = { LOGIN: "login", REGISTER: "register" };
 
 export default function AuthPage() {
 	const [mode, setMode] = useState(AUTH_MODES.LOGIN);
+	const navigate = useNavigate();
 	const [form, setForm] = useState({
 		name: "",
 		email: "",
@@ -56,8 +58,7 @@ export default function AuthPage() {
 			if (isLogin) {
 				const { token } = await loginUser(form.email, form.password);
 				localStorage.setItem("token", token);
-				// TODO: redirect to dashboard, e.g. navigate("/dashboard")
-				alert("Logged in! Token saved.");
+				navigate("/users");
 			} else {
 				await registerUser(form.name, form.email, form.password);
 				// Auto-switch to login after successful register

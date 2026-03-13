@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ThemeToggle from "../components/ThemeToggle.jsx";
 import "../styles/base.css";
 import "../styles/landing.css";
 
@@ -161,7 +162,6 @@ export default function LandingPage() {
 	}, []);
 
 	useEffect(() => {
-		// Staggered entrance for hero elements
 		const els = heroRef.current?.querySelectorAll(".hero-animate");
 		els?.forEach((el, i) => {
 			el.style.animationDelay = `${i * 0.12}s`;
@@ -202,6 +202,7 @@ export default function LandingPage() {
 						))}
 					</div>
 					<div className="nav-ctas">
+						<ThemeToggle />
 						<button className="nav-signin" onClick={() => navigate("/login")}>
 							Sign in
 						</button>
@@ -216,7 +217,7 @@ export default function LandingPage() {
 			</nav>
 
 			{/* ── HERO ── */}
-			<section className="hero" ref={heroRef} id="features">
+			<section className="hero" ref={heroRef}>
 				<div className="hero-bg-grid" />
 				<div className="hero-bg-blob blob-1" />
 				<div className="hero-bg-blob blob-2" />
@@ -226,20 +227,17 @@ export default function LandingPage() {
 						<span className="badge-dot" />
 						Free to use · No credit card required
 					</div>
-
 					<h1 className="hero-heading hero-animate">
 						Your job search,
 						<br />
 						<em>finally organized.</em>
 					</h1>
-
 					<p className="hero-subhead hero-animate">
 						on-track centralizes every application, interview, and follow-up in
 						one place.
 						<br />
 						Stop losing opportunities to a messy spreadsheet.
 					</p>
-
 					<div className="hero-actions hero-animate">
 						<button className="btn-primary" onClick={() => navigate("/login")}>
 							Start tracking for free
@@ -268,7 +266,6 @@ export default function LandingPage() {
 							See how it works
 						</button>
 					</div>
-
 					<div className="hero-stats hero-animate">
 						<div className="hero-stat">
 							<span className="stat-val">100%</span>
@@ -287,7 +284,6 @@ export default function LandingPage() {
 					</div>
 				</div>
 
-				{/* Floating dashboard preview */}
 				<div className="hero-preview hero-animate">
 					<div className="preview-card">
 						<div className="preview-header">
@@ -304,7 +300,7 @@ export default function LandingPage() {
 									role: "Product Designer",
 									co: "Linear",
 									status: "Interview",
-									color: "#2563eb",
+									color: "#3b82f6",
 								},
 								{
 									role: "UX Lead",
@@ -343,7 +339,7 @@ export default function LandingPage() {
 									</div>
 									<span
 										className="preview-status"
-										style={{ color: row.color, background: row.color + "14" }}
+										style={{ color: row.color, background: row.color + "22" }}
 									>
 										{row.status}
 									</span>
@@ -365,7 +361,6 @@ export default function LandingPage() {
 						Built for job seekers who are serious about their search — not just
 						going through the motions.
 					</p>
-
 					<div className="features-grid">
 						{FEATURES.map((f, i) => (
 							<div className="feature-card" key={i}>
@@ -387,7 +382,6 @@ export default function LandingPage() {
 						No bloated setup. No learning curve. Just a clear system for
 						managing your job search.
 					</p>
-
 					<div className="steps-list">
 						{STEPS.map((s, i) => (
 							<div className="step" key={i}>
@@ -403,7 +397,7 @@ export default function LandingPage() {
 				</div>
 			</section>
 
-			{/* ── CTA BAND ── */}
+			{/* ── CTA ── */}
 			<section className="cta-section">
 				<div className="cta-inner">
 					<h2 className="cta-heading">Ready to take control of your search?</h2>

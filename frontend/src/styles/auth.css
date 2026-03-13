@@ -385,6 +385,98 @@
 	background: rgba(255, 255, 255, 0.22);
 }
 
+/* ── Auth nav row (back link + theme toggle) ── */
+.auth-nav-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 28px;
+}
+
+/* ── Back to home link ── */
+.auth-back-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	background: none;
+	border: none;
+	padding: 0;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--text-muted);
+	transition:
+		color var(--transition),
+		gap var(--transition);
+	cursor: pointer;
+}
+
+.auth-back-link:hover {
+	color: var(--text-primary);
+	gap: 8px;
+}
+
+/* ── Clickable panel logo hover ── */
+.panel-logo:hover .logo-name {
+	opacity: 0.8;
+}
+
+.panel-logo:hover .logo-mark {
+	background: rgba(255, 255, 255, 0.22);
+}
+
+/* ── Dark mode: nav scrolled background ── */
+[data-theme="dark"] .nav-scrolled {
+	background: rgba(15, 15, 16, 0.85);
+}
+
+/* ── Dark mode: hero badge ── */
+[data-theme="dark"] .hero-badge {
+	background: var(--surface);
+}
+
+/* ── Dark mode: preview card ── */
+[data-theme="dark"] .preview-card {
+	background: var(--surface);
+	border-color: var(--border);
+}
+
+[data-theme="dark"] .preview-header {
+	background: var(--bg);
+}
+
+/* ── Dark mode: feature cards ── */
+[data-theme="dark"] .features-section {
+	background: var(--surface);
+}
+
+[data-theme="dark"] .feature-card {
+	background: var(--surface);
+}
+
+[data-theme="dark"] .feature-card:hover {
+	background: var(--bg);
+}
+
+[data-theme="dark"] .features-grid {
+	background: var(--border);
+	border-color: var(--border);
+}
+
+/* ── Dark mode: how section ── */
+[data-theme="dark"] .how-section {
+	background: var(--bg);
+}
+
+/* ── Dark mode: nav get started button ── */
+[data-theme="dark"] .nav-getstarted {
+	background: var(--text-primary);
+	color: var(--bg);
+}
+
+[data-theme="dark"] .nav-getstarted:hover {
+	background: #e0e0de;
+}
+
 @keyframes fadeUp {
 	from {
 		opacity: 0;

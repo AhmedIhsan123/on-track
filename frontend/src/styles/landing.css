@@ -100,7 +100,7 @@
 .nav-getstarted {
 	padding: 9px 18px;
 	background: var(--text-primary);
-	color: white;
+	color: var(--bg);
 	border: none;
 	border-radius: var(--radius);
 	font-size: 14px;
@@ -191,7 +191,7 @@
 	align-items: center;
 	gap: 8px;
 	padding: 6px 14px;
-	background: white;
+	background: var(--surface);
 	border: 1px solid var(--border);
 	border-radius: 100px;
 	font-size: 13px;
@@ -282,7 +282,7 @@
 
 .btn-ghost {
 	padding: 14px 24px;
-	background: white;
+	background: var(--surface);
 	border: 1.5px solid var(--border);
 	border-radius: var(--radius);
 	font-size: 15px;
@@ -341,7 +341,7 @@
 }
 
 .preview-card {
-	background: white;
+	background: var(--surface);
 	border: 1px solid var(--border);
 	border-radius: 16px;
 	box-shadow:
@@ -397,7 +397,7 @@
 	align-items: center;
 	gap: 12px;
 	padding: 12px 18px;
-	border-bottom: 1px solid #f5f5f5;
+	border-bottom: 1px solid var(--border);
 	animation: slideIn 0.4s ease both;
 }
 
@@ -494,7 +494,7 @@
 
 /* ── Features Grid ── */
 .features-section {
-	background: white;
+	background: var(--surface);
 	border-top: 1px solid var(--border);
 	border-bottom: 1px solid var(--border);
 }
@@ -510,7 +510,7 @@
 }
 
 .feature-card {
-	background: white;
+	background: var(--surface);
 	padding: 36px 32px;
 	transition: background var(--transition);
 }
@@ -607,8 +607,9 @@
 }
 
 /* ── CTA Section ── */
+/* Hardcoded dark — intentionally stays dark in both light and dark themes */
 .cta-section {
-	background: var(--text-primary);
+	background: #111110;
 	padding: 0;
 }
 
@@ -621,31 +622,32 @@
 
 .cta-heading {
 	font-size: clamp(28px, 4vw, 48px);
-	color: white;
+	color: #f0f0ee;
 	letter-spacing: -1px;
 	margin-bottom: 14px;
 }
 
 .cta-subhead {
 	font-size: 16px;
-	color: rgba(255, 255, 255, 0.55);
+	color: rgba(240, 240, 238, 0.55);
 	margin-bottom: 40px;
 }
 
 .cta-section .btn-primary {
 	background: white;
-	color: var(--text-primary);
+	color: #111110;
 	box-shadow: none;
 }
 
 .cta-section .btn-primary:hover {
-	background: var(--bg);
+	background: #e8e8e4;
 	box-shadow: none;
 }
 
 /* ── Footer ── */
+/* Hardcoded dark — intentionally stays dark in both light and dark themes */
 .landing-footer {
-	background: var(--text-primary);
+	background: #111110;
 	border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -672,12 +674,67 @@
 }
 
 .footer-logo .nav-logo-name {
-	color: white;
+	color: #f0f0ee;
 }
 
 .footer-copy {
 	font-size: 13px;
-	color: rgba(255, 255, 255, 0.35);
+	color: rgba(240, 240, 238, 0.35);
+}
+
+/* ── Auth nav row (back link + theme toggle) ── */
+.auth-nav-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 28px;
+}
+
+/* ── Back to home link ── */
+.auth-back-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	background: none;
+	border: none;
+	padding: 0;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--text-muted);
+	transition:
+		color var(--transition),
+		gap var(--transition);
+	cursor: pointer;
+}
+
+.auth-back-link:hover {
+	color: var(--text-primary);
+	gap: 8px;
+}
+
+/* ── Clickable panel logo hover ── */
+.panel-logo:hover .logo-name {
+	opacity: 0.8;
+}
+
+.panel-logo:hover .logo-mark {
+	background: rgba(255, 255, 255, 0.22);
+}
+
+/* ── Dark mode: nav scrolled background ── */
+[data-theme="dark"] .nav-scrolled {
+	background: rgba(15, 15, 16, 0.85);
+}
+
+/* ── Dark mode: nav get started button ── */
+[data-theme="dark"] .nav-getstarted {
+	background: var(--text-primary);
+	color: var(--bg);
+}
+
+[data-theme="dark"] .nav-getstarted:hover {
+	background: #e0e0de;
+	color: #111110;
 }
 
 /* ── Animations ── */

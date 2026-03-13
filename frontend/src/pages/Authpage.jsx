@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../services/authService.js";
 import "../styles/base.css";
 import "../styles/auth.css";
@@ -6,6 +7,7 @@ import "../styles/auth.css";
 const AUTH_MODES = { LOGIN: "login", REGISTER: "register" };
 
 export default function AuthPage() {
+	const navigate = useNavigate();
 	const [mode, setMode] = useState(AUTH_MODES.LOGIN);
 	const [form, setForm] = useState({
 		name: "",
@@ -56,13 +58,11 @@ export default function AuthPage() {
 			if (isLogin) {
 				const { token } = await loginUser(form.email, form.password);
 				localStorage.setItem("token", token);
-				// TODO: redirect to dashboard, e.g. navigate("/dashboard")
-				alert("Logged in! Token saved.");
+				navigate("/users");
 			} else {
 				await registerUser(form.name, form.email, form.password);
-				// Auto-switch to login after successful register
 				switchMode();
-				setApiError(""); // clear any stale errors
+				setApiError("");
 			}
 		} catch (err) {
 			setApiError(err.message);
@@ -83,7 +83,18 @@ export default function AuthPage() {
 		<div className="auth-wrapper">
 			{/* LEFT DECORATIVE PANEL */}
 			<div className="auth-panel">
-				<div className="panel-logo">
+				{/* Clickable logo → back to landing */}
+				<button
+					className="panel-logo"
+					onClick={() => navigate("/")}
+					style={{
+						background: "none",
+						border: "none",
+						cursor: "pointer",
+						padding: 0,
+						textAlign: "left",
+					}}
+				>
 					<div className="logo-mark">
 						<svg
 							width="18"
@@ -99,7 +110,7 @@ export default function AuthPage() {
 						</svg>
 					</div>
 					<span className="logo-name">on-track</span>
-				</div>
+				</button>
 
 				<div className="panel-content">
 					<h2 className="panel-tagline">
@@ -132,6 +143,24 @@ export default function AuthPage() {
 			{/* RIGHT FORM PANEL */}
 			<div className="auth-form-section">
 				<div className="auth-card">
+					{/* Back to home link */}
+					<button className="auth-back-link" onClick={() => navigate("/")}>
+						<svg
+							width="14"
+							height="14"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="2.5"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+						>
+							<line x1="19" y1="12" x2="5" y2="12" />
+							<polyline points="12 19 5 12 12 5" />
+						</svg>
+						Back to home
+					</button>
+
 					<div className="auth-header">
 						<h1 className="auth-title">
 							{isLogin ? "Welcome back" : "Create your account"}
@@ -267,9 +296,9 @@ export default function AuthPage() {
 								<label className="field-label">Confirm Password</label>
 								<input
 									className={`field-input ${errors.confirm ? "has-error" : ""}`}
-									type={showPassword ? "text" : "password"}
+									type="password"
 									name="confirm"
-									placeholder="Re-enter your password"
+									placeholder="Repeat your password"
 									value={form.confirm}
 									onChange={handleChange}
 									autoComplete="new-password"

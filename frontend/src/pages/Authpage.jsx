@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../services/authService.js";
+import ThemeToggle from "../components/ThemeToggle.jsx";
 import "../styles/base.css";
 import "../styles/auth.css";
 
@@ -46,13 +47,11 @@ export default function AuthPage() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setApiError("");
-
 		const validationErrors = validate();
 		if (Object.keys(validationErrors).length > 0) {
 			setErrors(validationErrors);
 			return;
 		}
-
 		setLoading(true);
 		try {
 			if (isLogin) {
@@ -83,7 +82,6 @@ export default function AuthPage() {
 		<div className="auth-wrapper">
 			{/* LEFT DECORATIVE PANEL */}
 			<div className="auth-panel">
-				{/* Clickable logo → back to landing */}
 				<button
 					className="panel-logo"
 					onClick={() => navigate("/")}
@@ -143,23 +141,26 @@ export default function AuthPage() {
 			{/* RIGHT FORM PANEL */}
 			<div className="auth-form-section">
 				<div className="auth-card">
-					{/* Back to home link */}
-					<button className="auth-back-link" onClick={() => navigate("/")}>
-						<svg
-							width="14"
-							height="14"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="2.5"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						>
-							<line x1="19" y1="12" x2="5" y2="12" />
-							<polyline points="12 19 5 12 12 5" />
-						</svg>
-						Back to home
-					</button>
+					{/* Nav row: back link + theme toggle */}
+					<div className="auth-nav-row">
+						<button className="auth-back-link" onClick={() => navigate("/")}>
+							<svg
+								width="14"
+								height="14"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							>
+								<line x1="19" y1="12" x2="5" y2="12" />
+								<polyline points="12 19 5 12 12 5" />
+							</svg>
+							Back to home
+						</button>
+						<ThemeToggle />
+					</div>
 
 					<div className="auth-header">
 						<h1 className="auth-title">
@@ -172,7 +173,6 @@ export default function AuthPage() {
 						</p>
 					</div>
 
-					{/* MODE TOGGLE */}
 					<div className="mode-toggle">
 						<button
 							className={`toggle-btn ${isLogin ? "active" : ""}`}
@@ -192,10 +192,8 @@ export default function AuthPage() {
 						</button>
 					</div>
 
-					{/* API ERROR BANNER */}
 					{apiError && <div className="api-error-banner">⚠ {apiError}</div>}
 
-					{/* FORM */}
 					<form
 						className="form form-appear"
 						key={mode}

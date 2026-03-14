@@ -48,6 +48,7 @@
 	justify-content: center;
 	color: white;
 	flex-shrink: 0;
+	transition: background var(--transition);
 }
 
 .nav-logo-name {
@@ -55,6 +56,15 @@
 	font-size: 20px;
 	color: var(--text-primary);
 	letter-spacing: -0.3px;
+	transition: opacity var(--transition);
+}
+
+.nav-logo:hover .nav-logo-name {
+	opacity: 0.8;
+}
+
+.nav-logo:hover .nav-logo-mark {
+	background: var(--accent-hover);
 }
 
 .nav-links {

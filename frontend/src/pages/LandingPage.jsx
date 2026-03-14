@@ -173,11 +173,20 @@ export default function LandingPage() {
 			{/* ── NAV ── */}
 			<nav className={`landing-nav ${scrolled ? "nav-scrolled" : ""}`}>
 				<div className="nav-inner">
-					<div className="nav-logo">
+					<button
+						className="nav-logo"
+						onClick={() => navigate("/")}
+						style={{
+							background: "none",
+							border: "none",
+							cursor: "pointer",
+							padding: 0,
+						}}
+					>
 						<div className="nav-logo-mark">
 							<svg
-								width="16"
-								height="16"
+								width="18"
+								height="18"
 								viewBox="0 0 24 24"
 								fill="none"
 								stroke="currentColor"
@@ -189,7 +198,7 @@ export default function LandingPage() {
 							</svg>
 						</div>
 						<span className="nav-logo-name">on-track</span>
-					</div>
+					</button>
 					<div className="nav-links">
 						{NAV_LINKS.map((l) => (
 							<a

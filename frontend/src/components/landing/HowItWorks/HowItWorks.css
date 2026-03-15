@@ -1,0 +1,94 @@
+.how-section {
+	background: var(--bg);
+}
+
+/* ── Shared section layout ──
+   These .section-* classes are used by all landing sections.
+   Each section that needs them imports its own copy — since
+   CSS is deduplicated by the browser this causes no bloat.
+─────────────────────────────── */
+.section-inner {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 96px 32px;
+}
+
+.section-label {
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--accent);
+	margin-bottom: 14px;
+}
+
+.section-heading {
+	font-size: clamp(28px, 4vw, 44px);
+	letter-spacing: -0.8px;
+	color: var(--text-primary);
+	margin-bottom: 16px;
+	max-width: 560px;
+}
+
+.section-subhead {
+	font-size: 16px;
+	color: var(--text-secondary);
+	line-height: 1.7;
+	max-width: 520px;
+	margin-bottom: 64px;
+}
+
+.steps-list {
+	display: flex;
+	flex-direction: column;
+	max-width: 640px;
+}
+
+.step {
+	display: flex;
+	gap: 28px;
+	position: relative;
+}
+
+.step-num {
+	font-family: "DM Serif Display", serif;
+	font-size: 13px;
+	font-weight: 400;
+	color: var(--text-muted);
+	letter-spacing: 0.05em;
+	padding-top: 3px;
+	min-width: 28px;
+	flex-shrink: 0;
+}
+
+.step-content {
+	padding-bottom: 48px;
+	position: relative;
+}
+
+.step:last-child .step-content {
+	padding-bottom: 0;
+}
+
+.step-connector {
+	position: absolute;
+	left: 14px;
+	top: 28px;
+	bottom: 0;
+	width: 1px;
+	background: linear-gradient(to bottom, var(--border), transparent);
+}
+
+.step-title {
+	font-family: "DM Serif Display", serif;
+	font-size: 22px;
+	color: var(--text-primary);
+	margin-bottom: 8px;
+	letter-spacing: -0.3px;
+}
+
+.step-desc {
+	font-size: 15px;
+	color: var(--text-secondary);
+	line-height: 1.7;
+}

@@ -1,5 +1,5 @@
-import { useTheme } from "../context/themeContext.jsx";
-import "../styles/ThemeToggle.css";
+import { useTheme } from "../../../context/ThemeContext.jsx";
+import "../ThemeToggle/ThemeToggle.css";
 
 export default function ThemeToggle() {
 	const { dark, toggle } = useTheme();

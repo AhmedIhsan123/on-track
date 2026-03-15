@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser, registerUser } from "../services/authService.js";
-import ThemeToggle from "../components/ThemeToggle.jsx";
-import "../styles/base.css";
-import "../styles/auth.css";
+import { loginUser, registerUser } from "../../services/authService.js";
+import Logo from "../../components/ui/Logo/Logo";
+import ThemeToggle from "../../components/ui/ThemeToggle/ThemeToggle";
+import "../../styles/base.css";
+import "./AuthPage.css";
 
 const AUTH_MODES = { LOGIN: "login", REGISTER: "register" };
 
@@ -61,7 +62,6 @@ export default function AuthPage() {
 			} else {
 				await registerUser(form.name, form.email, form.password);
 				switchMode();
-				setApiError("");
 			}
 		} catch (err) {
 			setApiError(err.message);
@@ -80,35 +80,9 @@ export default function AuthPage() {
 
 	return (
 		<div className="auth-wrapper">
-			{/* LEFT DECORATIVE PANEL */}
+			{/* ── LEFT PANEL ── */}
 			<div className="auth-panel">
-				<button
-					className="panel-logo"
-					onClick={() => navigate("/")}
-					style={{
-						background: "none",
-						border: "none",
-						cursor: "pointer",
-						padding: 0,
-						textAlign: "left",
-					}}
-				>
-					<div className="logo-mark">
-						<svg
-							width="18"
-							height="18"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="2.2"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						>
-							<polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-						</svg>
-					</div>
-					<span className="logo-name">on-track</span>
-				</button>
+				<Logo variant="light" size="md" />
 
 				<div className="panel-content">
 					<h2 className="panel-tagline">
@@ -138,10 +112,9 @@ export default function AuthPage() {
 				</div>
 			</div>
 
-			{/* RIGHT FORM PANEL */}
+			{/* ── RIGHT PANEL ── */}
 			<div className="auth-form-section">
 				<div className="auth-card">
-					{/* Nav row: back link + theme toggle */}
 					<div className="auth-nav-row">
 						<button className="auth-back-link" onClick={() => navigate("/")}>
 							<svg
@@ -173,6 +146,7 @@ export default function AuthPage() {
 						</p>
 					</div>
 
+					{/* MODE TOGGLE */}
 					<div className="mode-toggle">
 						<button
 							className={`toggle-btn ${isLogin ? "active" : ""}`}
@@ -192,8 +166,10 @@ export default function AuthPage() {
 						</button>
 					</div>
 
+					{/* API ERROR */}
 					{apiError && <div className="api-error-banner">⚠ {apiError}</div>}
 
+					{/* FORM */}
 					<form
 						className="form form-appear"
 						key={mode}

@@ -1,16 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser, registerUser } from "../services/authService.js";
-import ThemeToggle from "../components/ThemeToggle.jsx";
-import "../styles/base.css";
-import "../styles/auth.css";
+import { loginUser, registerUser } from "../../services/authService.js";
+import Logo from "../../components/ui/Logo/Logo";
+import ThemeToggle from "../../components/ui/ThemeToggle/ThemeToggle";
+import "../../styles/base.css";
+import "./AuthPage.css";
 
 const AUTH_MODES = { LOGIN: "login", REGISTER: "register" };
 
-/**
- * Handles both login and registration in a single page.
- * Switches between modes without a route change — all state resets via switchMode().
- */
 export default function AuthPage() {
 	const navigate = useNavigate();
 	const [mode, setMode] = useState(AUTH_MODES.LOGIN);
@@ -29,7 +26,6 @@ export default function AuthPage() {
 
 	const handleChange = (e) => {
 		setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-		// Clear the error for this field as the user corrects it
 		setErrors((prev) => ({ ...prev, [e.target.name]: "" }));
 		setApiError("");
 	};
@@ -52,13 +48,11 @@ export default function AuthPage() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setApiError("");
-
 		const validationErrors = validate();
 		if (Object.keys(validationErrors).length > 0) {
 			setErrors(validationErrors);
 			return;
 		}
-
 		setLoading(true);
 		try {
 			if (isLogin) {
@@ -67,9 +61,7 @@ export default function AuthPage() {
 				navigate("/users");
 			} else {
 				await registerUser(form.name, form.email, form.password);
-				// On success, drop back to login so the user can sign in
 				switchMode();
-				setApiError("");
 			}
 		} catch (err) {
 			setApiError(err.message);
@@ -78,7 +70,6 @@ export default function AuthPage() {
 		}
 	};
 
-	// Flips mode and wipes all form state so the user gets a clean slate
 	const switchMode = () => {
 		setMode(isLogin ? AUTH_MODES.REGISTER : AUTH_MODES.LOGIN);
 		setForm({ name: "", email: "", password: "", confirm: "" });
@@ -89,35 +80,9 @@ export default function AuthPage() {
 
 	return (
 		<div className="auth-wrapper">
-			{/* LEFT DECORATIVE PANEL */}
+			{/* ── LEFT PANEL ── */}
 			<div className="auth-panel">
-				<button
-					className="panel-logo"
-					onClick={() => navigate("/")}
-					style={{
-						background: "none",
-						border: "none",
-						cursor: "pointer",
-						padding: 0,
-						textAlign: "left",
-					}}
-				>
-					<div className="logo-mark">
-						<svg
-							width="18"
-							height="18"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="2.2"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						>
-							<polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-						</svg>
-					</div>
-					<span className="logo-name">on-track</span>
-				</button>
+				<Logo variant="light" size="md" />
 
 				<div className="panel-content">
 					<h2 className="panel-tagline">
@@ -147,7 +112,7 @@ export default function AuthPage() {
 				</div>
 			</div>
 
-			{/* RIGHT FORM PANEL */}
+			{/* ── RIGHT PANEL ── */}
 			<div className="auth-form-section">
 				<div className="auth-card">
 					<div className="auth-nav-row">
@@ -181,7 +146,7 @@ export default function AuthPage() {
 						</p>
 					</div>
 
-					{/* Only call switchMode when clicking the inactive tab to avoid a redundant reset */}
+					{/* MODE TOGGLE */}
 					<div className="mode-toggle">
 						<button
 							className={`toggle-btn ${isLogin ? "active" : ""}`}
@@ -201,13 +166,10 @@ export default function AuthPage() {
 						</button>
 					</div>
 
+					{/* API ERROR */}
 					{apiError && <div className="api-error-banner">⚠ {apiError}</div>}
 
-					{/*
-					 * key={mode} remounts the form on mode switch, which clears any
-					 * browser-autofilled values that wouldn't be caught by resetting state alone.
-					 * noValidate disables native browser validation in favour of our own.
-					 */}
+					{/* FORM */}
 					<form
 						className="form form-appear"
 						key={mode}
@@ -321,7 +283,6 @@ export default function AuthPage() {
 							</div>
 						)}
 
-						{/* TODO: implement forgot password flow */}
 						{isLogin && (
 							<div className="forgot-row">
 								<a href="#" className="forgot-link">
@@ -349,7 +310,6 @@ export default function AuthPage() {
 							<div className="divider-line" />
 						</div>
 
-						{/* TODO: wire up to a Google OAuth provider */}
 						<button type="button" className="oauth-btn">
 							<svg width="18" height="18" viewBox="0 0 24 24">
 								<path

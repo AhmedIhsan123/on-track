@@ -1,5 +1,6 @@
 /* ============================================================
-   AUTH.CSS — Styles specific to the Login / Register page
+   AUTHPAGE.CSS — Styles specific to the Login / Register page
+   Note: logo styles live in components/ui/Logo/Logo.css
    ============================================================ */
 
 /* ── Layout ── */
@@ -41,35 +42,6 @@
 	height: 300px;
 	border-radius: 50%;
 	background: rgba(255, 255, 255, 0.04);
-}
-
-.panel-logo {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	z-index: 1;
-}
-
-.logo-mark {
-	width: 36px;
-	height: 36px;
-	background: rgba(255, 255, 255, 0.15);
-	border: 1.5px solid rgba(255, 255, 255, 0.3);
-	border-radius: 8px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.logo-mark svg {
-	color: white;
-}
-
-.logo-name {
-	font-family: "DM Serif Display", serif;
-	font-size: 22px;
-	color: white;
-	letter-spacing: -0.3px;
 }
 
 .panel-content {
@@ -137,6 +109,37 @@
 	max-width: 420px;
 }
 
+/* ── Nav row (back link + theme toggle) ── */
+.auth-nav-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 28px;
+}
+
+/* ── Back to home link ── */
+.auth-back-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	background: none;
+	border: none;
+	padding: 0;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--text-muted);
+	transition:
+		color var(--transition),
+		gap var(--transition);
+	cursor: pointer;
+}
+
+.auth-back-link:hover {
+	color: var(--text-primary);
+	gap: 8px;
+}
+
+/* ── Header ── */
 .auth-header {
 	margin-bottom: 32px;
 }
@@ -330,7 +333,7 @@
 	box-shadow: var(--shadow-md);
 }
 
-/* ── Switch Mode Text ── */
+/* ── Switch Mode ── */
 .switch-text {
 	text-align: center;
 	font-size: 13px;
@@ -351,130 +354,6 @@
 /* ── Form Appear Animation ── */
 .form-appear {
 	animation: fadeUp 0.25s ease forwards;
-}
-
-/* ── Back to home link (top of right form panel) ── */
-.auth-back-link {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-	background: none;
-	border: none;
-	padding: 0;
-	font-size: 13px;
-	font-weight: 500;
-	color: var(--text-muted);
-	margin-bottom: 28px;
-	transition:
-		color var(--transition),
-		gap var(--transition);
-	cursor: pointer;
-}
-
-.auth-back-link:hover {
-	color: var(--text-primary);
-	gap: 8px;
-}
-
-/* ── Clickable panel logo ── */
-.panel-logo:hover .logo-name {
-	opacity: 0.8;
-}
-
-.panel-logo:hover .logo-mark {
-	background: rgba(255, 255, 255, 0.22);
-}
-
-/* ── Auth nav row (back link + theme toggle) ── */
-.auth-nav-row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 28px;
-}
-
-/* ── Back to home link ── */
-.auth-back-link {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-	background: none;
-	border: none;
-	padding: 0;
-	font-size: 13px;
-	font-weight: 500;
-	color: var(--text-muted);
-	transition:
-		color var(--transition),
-		gap var(--transition);
-	cursor: pointer;
-}
-
-.auth-back-link:hover {
-	color: var(--text-primary);
-	gap: 8px;
-}
-
-/* ── Clickable panel logo hover ── */
-.panel-logo:hover .logo-name {
-	opacity: 0.8;
-}
-
-.panel-logo:hover .logo-mark {
-	background: rgba(255, 255, 255, 0.22);
-}
-
-/* ── Dark mode: nav scrolled background ── */
-[data-theme="dark"] .nav-scrolled {
-	background: rgba(15, 15, 16, 0.85);
-}
-
-/* ── Dark mode: hero badge ── */
-[data-theme="dark"] .hero-badge {
-	background: var(--surface);
-}
-
-/* ── Dark mode: preview card ── */
-[data-theme="dark"] .preview-card {
-	background: var(--surface);
-	border-color: var(--border);
-}
-
-[data-theme="dark"] .preview-header {
-	background: var(--bg);
-}
-
-/* ── Dark mode: feature cards ── */
-[data-theme="dark"] .features-section {
-	background: var(--surface);
-}
-
-[data-theme="dark"] .feature-card {
-	background: var(--surface);
-}
-
-[data-theme="dark"] .feature-card:hover {
-	background: var(--bg);
-}
-
-[data-theme="dark"] .features-grid {
-	background: var(--border);
-	border-color: var(--border);
-}
-
-/* ── Dark mode: how section ── */
-[data-theme="dark"] .how-section {
-	background: var(--bg);
-}
-
-/* ── Dark mode: nav get started button ── */
-[data-theme="dark"] .nav-getstarted {
-	background: var(--text-primary);
-	color: var(--bg);
-}
-
-[data-theme="dark"] .nav-getstarted:hover {
-	background: #e0e0de;
 }
 
 @keyframes fadeUp {

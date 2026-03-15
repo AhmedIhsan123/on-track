@@ -1,0 +1,87 @@
+/* ── Logo base ── */
+.logo {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+/* ── Mark (the square icon box) ── */
+.logo-mark {
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	transition: background var(--transition);
+}
+
+/* ── Name ── */
+.logo-name {
+	font-family: "DM Serif Display", serif;
+	letter-spacing: -0.3px;
+	transition: opacity var(--transition);
+}
+
+/* ── Hover ── */
+.logo:hover .logo-name {
+	opacity: 0.8;
+}
+
+/* ─────────────────────────────
+   Variants
+───────────────────────────── */
+
+/* default — dark mark on light background (nav) */
+.logo--default .logo-mark {
+	background: var(--accent);
+	color: white;
+}
+
+.logo--default .logo-name {
+	color: var(--text-primary);
+}
+
+.logo--default:hover .logo-mark {
+	background: var(--accent-hover);
+}
+
+/* light — white mark on transparent (footer, auth panel) */
+.logo--light .logo-mark {
+	background: rgba(255, 255, 255, 0.15);
+	border: 1.5px solid rgba(255, 255, 255, 0.3);
+	color: white;
+}
+
+.logo--light .logo-name {
+	color: white;
+}
+
+.logo--light:hover .logo-mark {
+	background: rgba(255, 255, 255, 0.22);
+}
+
+/* ─────────────────────────────
+   Sizes
+───────────────────────────── */
+.logo--sm .logo-mark {
+	width: 26px;
+	height: 26px;
+}
+
+.logo--sm .logo-name {
+	font-size: 17px;
+}
+
+.logo--md .logo-mark {
+	width: 34px;
+	height: 34px;
+}
+
+.logo--md .logo-name {
+	font-size: 20px;
+}

@@ -1,0 +1,349 @@
+/* ============================================================
+   DASHBOARDLAYOUT.CSS
+   ============================================================ */
+
+/* ── Shell ── */
+.dashboard-shell {
+	display: grid;
+	grid-template-columns: 220px 1fr;
+	height: 100vh;
+	overflow: hidden;
+	background: var(--bg);
+}
+
+/* ── Sidebar (desktop) ── */
+.dash-sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 220px;
+	height: 100vh;
+	background: var(--surface);
+	border-right: 1px solid var(--border);
+	display: flex;
+	flex-direction: column;
+	z-index: 50;
+	overflow: hidden;
+}
+
+/* ── Sidebar logo ── */
+.sidebar-logo {
+	padding: 18px 16px 14px;
+	border-bottom: 1px solid var(--border);
+	flex-shrink: 0;
+}
+
+/* ── Nav ── */
+.sidebar-nav {
+	padding: 8px 8px;
+	flex: 1;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.nav-group-label {
+	font-size: 10px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--text-muted);
+	padding: 10px 10px 4px;
+	margin-top: 2px;
+}
+
+.nav-item {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+	padding: 8px 10px;
+	border-radius: 8px;
+	border: none;
+	background: transparent;
+	color: var(--text-secondary);
+	font-size: 13.5px;
+	font-weight: 500;
+	width: 100%;
+	text-align: left;
+	cursor: pointer;
+	transition:
+		background var(--transition),
+		color var(--transition);
+	white-space: nowrap;
+}
+
+.nav-item:hover {
+	background: var(--bg);
+	color: var(--text-primary);
+}
+
+.nav-item.active {
+	background: var(--accent-light);
+	color: var(--accent);
+}
+
+.nav-item svg {
+	flex-shrink: 0;
+	opacity: 0.65;
+}
+
+.nav-item.active svg {
+	opacity: 1;
+}
+
+.nav-badge {
+	margin-left: auto;
+	font-size: 11px;
+	font-weight: 600;
+	background: var(--accent);
+	color: white;
+	border-radius: 20px;
+	padding: 1px 7px;
+	min-width: 20px;
+	text-align: center;
+	flex-shrink: 0;
+}
+
+.nav-badge.green {
+	background: var(--success);
+}
+
+/* ── User footer ── */
+.sidebar-user {
+	border-top: 1px solid var(--border);
+	padding: 12px 14px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-shrink: 0;
+}
+
+.user-avatar {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: var(--accent-light);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 11px;
+	font-weight: 600;
+	color: var(--accent);
+	flex-shrink: 0;
+}
+
+.user-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.user-name {
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--text-primary);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.user-plan {
+	font-size: 11px;
+	color: var(--text-muted);
+	margin-top: 1px;
+}
+
+/* ── Main column ── */
+.dash-main {
+	grid-column: 2;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	overflow: hidden;
+	min-width: 0;
+}
+
+/* ── Topbar ── */
+.dash-topbar {
+	position: sticky;
+	top: 0;
+	z-index: 40;
+	display: flex;
+	align-items: center;
+	padding: 0 24px;
+	height: 56px;
+	background: var(--surface);
+	border-bottom: 1px solid var(--border);
+	gap: 12px;
+	flex-shrink: 0;
+}
+
+.topbar-left {
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+	flex-shrink: 0;
+}
+
+.topbar-title {
+	font-family: "DM Serif Display", serif;
+	font-size: 20px;
+	letter-spacing: -0.3px;
+	color: var(--text-primary);
+	white-space: nowrap;
+}
+
+.topbar-greeting {
+	font-size: 13px;
+	color: var(--text-muted);
+	font-family: "DM Sans", sans-serif;
+	font-weight: 400;
+	white-space: nowrap;
+}
+
+.topbar-right {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-left: auto;
+	flex-shrink: 0;
+}
+
+.search-box {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background: var(--bg);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	padding: 6px 14px;
+	font-size: 13px;
+	color: var(--text-muted);
+	cursor: text;
+	width: 200px;
+	flex-shrink: 0;
+	transition: border-color var(--transition);
+}
+
+.search-box:hover {
+	border-color: var(--text-muted);
+}
+
+/* ── Hamburger (hidden on desktop) ── */
+.hamburger {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	border-radius: 8px;
+	border: 1px solid var(--border);
+	background: var(--surface);
+	color: var(--text-secondary);
+	flex-shrink: 0;
+	cursor: pointer;
+	transition:
+		background var(--transition),
+		color var(--transition);
+}
+
+.hamburger:hover {
+	background: var(--bg);
+	color: var(--text-primary);
+}
+
+/* ── Drawer sidebar (mobile only) ── */
+.drawer-overlay {
+	display: none;
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.4);
+	z-index: 60;
+}
+
+.drawer-sidebar {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 240px;
+	height: 100vh;
+	background: var(--surface);
+	border-right: 1px solid var(--border);
+	flex-direction: column;
+	z-index: 70;
+	transform: translateX(-100%);
+	transition: transform 0.25s ease;
+	overflow: hidden;
+}
+
+.drawer-sidebar.open {
+	transform: translateX(0);
+}
+
+/* ── Content ── */
+.dash-content {
+	flex: 1;
+	padding: 20px 24px;
+	min-width: 0;
+	min-height: 0;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+/* ────────────────────────────────────────
+   RESPONSIVE
+──────────────────────────────────────── */
+
+/* Mid-range: shrink search */
+@media (max-width: 1100px) {
+	.search-box {
+		width: 160px;
+	}
+}
+
+/* Collapse sidebar into drawer below 860px */
+@media (max-width: 860px) {
+	.dashboard-shell {
+		grid-template-columns: 1fr;
+	}
+
+	.dash-sidebar {
+		display: none;
+	}
+
+	.hamburger {
+		display: flex;
+	}
+
+	.drawer-overlay {
+		display: block;
+	}
+
+	.drawer-sidebar {
+		display: flex;
+	}
+
+	.dash-main {
+		grid-column: 1;
+	}
+
+	.topbar-greeting {
+		display: none;
+	}
+
+	.dash-content {
+		padding: 16px;
+	}
+}
+
+/* Very small: hide search box too */
+@media (max-width: 560px) {
+	.search-box {
+		display: none;
+	}
+
+	.topbar-title {
+		font-size: 17px;
+	}
+}

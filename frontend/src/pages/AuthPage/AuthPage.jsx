@@ -58,7 +58,7 @@ export default function AuthPage() {
 			if (isLogin) {
 				const { token } = await loginUser(form.email, form.password);
 				localStorage.setItem("token", token);
-				navigate("/users");
+				navigate("/dashboard");
 			} else {
 				await registerUser(form.name, form.email, form.password);
 				switchMode();

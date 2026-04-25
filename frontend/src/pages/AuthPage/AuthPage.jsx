@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser, registerUser, loginWithGoogle, loginWithGitHub } from "../../services/authService.js";
+import {
+	loginUser,
+	registerUser,
+	loginWithGoogle,
+	loginWithGitHub,
+} from "../../services/authService.js";
 import Logo from "../../components/ui/Logo/Logo";
 import ThemeToggle from "../../components/ui/ThemeToggle/ThemeToggle";
 import "../../styles/base.css";
@@ -323,7 +328,11 @@ export default function AuthPage() {
 							<div className="divider-line" />
 						</div>
 
-						<button type="button" className="oauth-btn" onClick={loginWithGoogle}>
+						<button
+							type="button"
+							className="oauth-btn"
+							onClick={loginWithGoogle}
+						>
 							<svg width="18" height="18" viewBox="0 0 24 24">
 								<path
 									fill="#4285F4"
@@ -345,7 +354,11 @@ export default function AuthPage() {
 							Continue with Google
 						</button>
 
-						<button type="button" className="oauth-btn" onClick={loginWithGitHub}>
+						<button
+							type="button"
+							className="oauth-btn"
+							onClick={loginWithGitHub}
+						>
 							<svg
 								width="18"
 								height="18"

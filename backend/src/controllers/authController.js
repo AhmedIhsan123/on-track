@@ -3,6 +3,13 @@ import jwt from "jsonwebtoken";
 import { createUser, findUserByEmail } from "../models/userModel.js";
 import dotenv from "dotenv";
 
+const signToken = (user) =>
+	jwt.sign(
+		{ id: user.id, email: user.email, full_name: user.full_name },
+		process.env.JWT_SECRET,
+		{ expiresIn: "1h" },
+	);
+
 dotenv.config();
 
 export const register = async (req, res) => {
@@ -48,15 +55,15 @@ export const login = async (req, res) => {
 			return res.status(400).json({ message: "Invalid credentials" });
 		}
 
-		const token = jwt.sign(
-			{ id: user.id, email: user.email, full_name: user.full_name },
-			process.env.JWT_SECRET,
-			{ expiresIn: "1h" },
-		);
-
+		const token = signToken(user);
 		res.json({ token });
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ message: "Server error" });
 	}
+};
+
+export const oauthCallback = (req, res) => {
+	const token = signToken(req.user);
+	res.redirect(`${process.env.FRONTEND_URL}/login?token=${token}`);
 };

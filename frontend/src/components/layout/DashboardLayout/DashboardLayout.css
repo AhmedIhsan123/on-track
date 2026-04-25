@@ -5,7 +5,7 @@
 /* ── Shell ── */
 .dashboard-shell {
 	display: grid;
-	grid-template-columns: 220px 1fr;
+	grid-template-columns: 520px 1fr;
 	height: 100vh;
 	overflow: hidden;
 	background: var(--bg);
@@ -16,7 +16,7 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 220px;
+	width: 520px;
 	height: 100vh;
 	background: var(--surface);
 	border-right: 1px solid var(--border);
@@ -28,14 +28,14 @@
 
 /* ── Sidebar logo ── */
 .sidebar-logo {
-	padding: 18px 16px 14px;
+	padding: 36px 30px 26px;
 	border-bottom: 1px solid var(--border);
 	flex-shrink: 0;
 }
 
 /* ── Nav ── */
 .sidebar-nav {
-	padding: 8px 8px;
+	padding: 18px;
 	flex: 1;
 	overflow-y: auto;
 	display: flex;
@@ -43,25 +43,25 @@
 }
 
 .nav-group-label {
-	font-size: 10px;
+	font-size: 16px;
 	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
 	color: var(--text-muted);
-	padding: 10px 10px 4px;
-	margin-top: 2px;
+	padding: 18px 14px 8px;
+	margin-top: 4px;
 }
 
 .nav-item {
 	display: flex;
 	align-items: center;
-	gap: 9px;
-	padding: 8px 10px;
-	border-radius: 8px;
+	gap: 16px;
+	padding: 16px 20px;
+	border-radius: 12px;
 	border: none;
 	background: transparent;
 	color: var(--text-secondary);
-	font-size: 13.5px;
+	font-size: 22px;
 	font-weight: 500;
 	width: 100%;
 	text-align: left;
@@ -85,6 +85,8 @@
 .nav-item svg {
 	flex-shrink: 0;
 	opacity: 0.65;
+	width: 24px;
+	height: 24px;
 }
 
 .nav-item.active svg {
@@ -93,13 +95,13 @@
 
 .nav-badge {
 	margin-left: auto;
-	font-size: 11px;
+	font-size: 16px;
 	font-weight: 600;
 	background: var(--accent);
 	color: white;
 	border-radius: 20px;
-	padding: 1px 7px;
-	min-width: 20px;
+	padding: 2px 10px;
+	min-width: 28px;
 	text-align: center;
 	flex-shrink: 0;
 }
@@ -111,22 +113,22 @@
 /* ── User footer ── */
 .sidebar-user {
 	border-top: 1px solid var(--border);
-	padding: 12px 14px;
+	padding: 18px 20px;
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap: 14px;
 	flex-shrink: 0;
 }
 
 .user-avatar {
-	width: 30px;
-	height: 30px;
+	width: 46px;
+	height: 46px;
 	border-radius: 50%;
 	background: var(--accent-light);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 11px;
+	font-size: 16px;
 	font-weight: 600;
 	color: var(--accent);
 	flex-shrink: 0;
@@ -138,7 +140,7 @@
 }
 
 .user-name {
-	font-size: 13px;
+	font-size: 19px;
 	font-weight: 500;
 	color: var(--text-primary);
 	white-space: nowrap;
@@ -147,9 +149,9 @@
 }
 
 .user-plan {
-	font-size: 11px;
+	font-size: 15px;
 	color: var(--text-muted);
-	margin-top: 1px;
+	margin-top: 2px;
 }
 
 .sidebar-logout {
@@ -157,8 +159,8 @@
 	border: none;
 	cursor: pointer;
 	color: var(--text-muted);
-	padding: 4px;
-	border-radius: 6px;
+	padding: 6px;
+	border-radius: 8px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -188,31 +190,31 @@
 	z-index: 40;
 	display: flex;
 	align-items: center;
-	padding: 0 24px;
-	height: 56px;
+	padding: 0 60px;
+	height: 104px;
 	background: var(--surface);
 	border-bottom: 1px solid var(--border);
-	gap: 12px;
+	gap: 24px;
 	flex-shrink: 0;
 }
 
 .topbar-left {
 	display: flex;
 	align-items: baseline;
-	gap: 8px;
+	gap: 18px;
 	flex-shrink: 0;
 }
 
 .topbar-title {
 	font-family: "DM Serif Display", serif;
-	font-size: 20px;
-	letter-spacing: -0.3px;
+	font-size: 38px;
+	letter-spacing: -0.5px;
 	color: var(--text-primary);
 	white-space: nowrap;
 }
 
 .topbar-greeting {
-	font-size: 13px;
+	font-size: 22px;
 	color: var(--text-muted);
 	font-family: "DM Sans", sans-serif;
 	font-weight: 400;
@@ -222,7 +224,7 @@
 .topbar-right {
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 12px;
 	margin-left: auto;
 	flex-shrink: 0;
 }
@@ -230,15 +232,15 @@
 .search-box {
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 12px;
 	background: var(--bg);
 	border: 1px solid var(--border);
 	border-radius: var(--radius);
-	padding: 6px 14px;
-	font-size: 13px;
+	padding: 14px 26px;
+	font-size: 22px;
 	color: var(--text-muted);
 	cursor: text;
-	width: 200px;
+	width: 420px;
 	flex-shrink: 0;
 	transition: border-color var(--transition);
 }
@@ -252,9 +254,9 @@
 	display: none;
 	align-items: center;
 	justify-content: center;
-	width: 34px;
-	height: 34px;
-	border-radius: 8px;
+	width: 50px;
+	height: 50px;
+	border-radius: 12px;
 	border: 1px solid var(--border);
 	background: var(--surface);
 	color: var(--text-secondary);
@@ -284,7 +286,7 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 240px;
+	width: 320px;
 	height: 100vh;
 	background: var(--surface);
 	border-right: 1px solid var(--border);
@@ -302,7 +304,7 @@
 /* ── Content ── */
 .dash-content {
 	flex: 1;
-	padding: 20px 24px;
+	padding: 48px 64px;
 	min-width: 0;
 	min-height: 0;
 	overflow: hidden;
@@ -314,11 +316,38 @@
    RESPONSIVE
 ──────────────────────────────────────── */
 
-/* Mid-range: shrink search */
+/* Mid-range: scale back for smaller large screens */
+@media (max-width: 1800px) {
+	.search-box { width: 320px; }
+	.dashboard-shell { grid-template-columns: 380px 1fr; }
+	.dash-sidebar { width: 380px; }
+	.dash-content { padding: 36px 48px; }
+	.dash-topbar { padding: 0 48px; height: 86px; }
+	.topbar-title { font-size: 30px; }
+	.topbar-greeting { font-size: 18px; }
+	.nav-item { font-size: 18px; padding: 13px 16px; }
+	.search-box { font-size: 18px; padding: 11px 20px; }
+}
+
+@media (max-width: 1400px) {
+	.search-box { width: 240px; font-size: 15px; padding: 9px 18px; }
+	.dashboard-shell { grid-template-columns: 280px 1fr; }
+	.dash-sidebar { width: 280px; }
+	.dash-content { padding: 24px 32px; }
+	.dash-topbar { padding: 0 32px; height: 68px; }
+	.topbar-title { font-size: 24px; }
+	.topbar-greeting { font-size: 15px; }
+	.nav-item { font-size: 15px; padding: 11px 14px; }
+}
+
 @media (max-width: 1100px) {
-	.search-box {
-		width: 160px;
-	}
+	.search-box { width: 160px; }
+	.dashboard-shell { grid-template-columns: 240px 1fr; }
+	.dash-sidebar { width: 240px; }
+	.dash-content { padding: 20px 24px; }
+	.dash-topbar { padding: 0 24px; height: 56px; }
+	.topbar-title { font-size: 20px; }
+	.nav-item { font-size: 14px; padding: 10px 12px; }
 }
 
 /* Collapse sidebar into drawer below 860px */

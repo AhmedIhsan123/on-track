@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser, registerUser } from "../../services/authService.js";
+import { loginUser, registerUser, loginWithGoogle, loginWithGitHub } from "../../services/authService.js";
 import Logo from "../../components/ui/Logo/Logo";
 import ThemeToggle from "../../components/ui/ThemeToggle/ThemeToggle";
 import "../../styles/base.css";
@@ -23,6 +23,19 @@ export default function AuthPage() {
 	const [showPassword, setShowPassword] = useState(false);
 
 	const isLogin = mode === AUTH_MODES.LOGIN;
+
+	// Pick up the JWT that the backend redirects back with after OAuth
+	useEffect(() => {
+		const params = new URLSearchParams(window.location.search);
+		const token = params.get("token");
+		const error = params.get("error");
+		if (token) {
+			localStorage.setItem("token", token);
+			navigate("/dashboard");
+		} else if (error) {
+			setApiError("OAuth sign-in failed. Please try again.");
+		}
+	}, [navigate]);
 
 	const handleChange = (e) => {
 		setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -310,7 +323,7 @@ export default function AuthPage() {
 							<div className="divider-line" />
 						</div>
 
-						<button type="button" className="oauth-btn">
+						<button type="button" className="oauth-btn" onClick={loginWithGoogle}>
 							<svg width="18" height="18" viewBox="0 0 24 24">
 								<path
 									fill="#4285F4"
@@ -332,7 +345,7 @@ export default function AuthPage() {
 							Continue with Google
 						</button>
 
-						<button type="button" className="oauth-btn">
+						<button type="button" className="oauth-btn" onClick={loginWithGitHub}>
 							<svg
 								width="18"
 								height="18"

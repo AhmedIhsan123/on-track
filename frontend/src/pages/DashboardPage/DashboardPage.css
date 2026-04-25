@@ -44,6 +44,10 @@
 	line-height: 1;
 }
 
+.stat-value--accent {
+	color: var(--accent);
+}
+
 .stat-sub {
 	font-size: 13px;
 	color: var(--text-muted);
@@ -257,22 +261,35 @@
 	white-space: nowrap;
 }
 
-.row-action {
-	background: none;
-	border: none;
-	color: var(--text-muted);
-	cursor: pointer;
-	padding: 4px 8px;
-	border-radius: 6px;
-	font-size: 16px;
-	letter-spacing: 1px;
-	line-height: 1;
-	transition: background var(--transition);
+.row-actions {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	justify-content: flex-end;
 }
 
-.row-action:hover {
-	background: var(--bg);
+.row-action-btn {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--text-muted);
+	padding: 5px;
+	border-radius: 6px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	transition: color 0.15s, background 0.15s;
+}
+
+.row-action-btn:hover {
 	color: var(--text-primary);
+	background: var(--bg);
+}
+
+.row-action-btn--danger:hover {
+	color: var(--error);
+	background: rgba(239, 68, 68, 0.08);
 }
 
 /* ── Status pills ── */
@@ -294,6 +311,10 @@
 	flex-shrink: 0;
 }
 
+.status-saved {
+	background: #f8fafc;
+	color: #64748b;
+}
 .status-applied {
 	background: #f1f5f9;
 	color: #475569;
